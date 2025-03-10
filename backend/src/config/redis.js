@@ -20,4 +20,4 @@ const connectRedis =async()=>{
     }
 };
 
-export default connectRedis;
+export { redisClient, connectRedis };

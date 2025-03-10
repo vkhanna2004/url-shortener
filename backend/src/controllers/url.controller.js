@@ -1,5 +1,5 @@
 import { Url } from "../models/url.model.js";
-import redisClient from "../config/redis.js";
+import {redisClient} from "../config/redis.js";
 import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
