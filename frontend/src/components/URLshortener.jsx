@@ -28,7 +28,7 @@ const URLShortener = () => {
 
     try {
       const response = await api.post("/shorten", { longurl });
-      setShortURL(`${API_BASE_URL}/${response.data.shortid}`);
+      setShortURL(`${API_BASE_URL}/api/${response.data.data.shortid}`);
     } catch (err) {
       setError(
         err.response?.data?.message ||
