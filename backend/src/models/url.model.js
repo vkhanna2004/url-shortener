@@ -2,12 +2,13 @@ import mongoose from "mongoose"
 
 const urlSchema=mongoose.Schema(
     {
-        actualurl:{
-            // long url
+        longurl:{
+            // actual url
             type: String,
             required: true
         },
         shortid:{
+            //shortened url's id
             type: String,
             required: true,
             unique: true
@@ -33,4 +34,4 @@ urlSchema.index(
     { expireAfterSeconds: 0 }
 );
 
-export const url=mongoose.model("url",urlSchema)
+export const Url=mongoose.model("Url",urlSchema)
