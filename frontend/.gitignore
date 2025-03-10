@@ -1,0 +1,17 @@
+# Ignore environment files
+.env
+
+# Ignore dependencies
+node_modules/
+
+# Ignore build files
+dist/
+build/
+
+# Ignore logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Ignore cache files
+.cache/
