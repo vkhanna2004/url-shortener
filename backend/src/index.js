@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 5000;
     await connectRedis();
 
     app.listen(PORT, () =>
-      console.log(`🚀 Server running on http://localhost:${PORT}`)
+      console.log(`🚀 Server running on ${PORT}`)
     );
   } catch (error) {
     console.error("Error starting the server:", error);
