@@ -1,5 +1,5 @@
 import { Url } from "../models/url.model.js";
-import {redisClient} from "../config/redis.js";
+import { redisClient } from "../config/redis.js";
 import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
@@ -17,7 +17,7 @@ export const shortenURL = asyncHandler(async (req, res) => {
     return res.json(
       new ApiResponse(
         201,
-        {shortid: cached_shortid, longurl },
+        { shortid: cached_shortid, longurl },
         "URL found in redis cache !"
       )
     );
@@ -62,6 +62,12 @@ export const redirectURL = asyncHandler(async (req, res) => {
 
     await redisClient.setEx(shortid, 86400, longurl);
     //url will expire if not accessed within 24 hrs
+
+    // Update MongoDB expiry so it's consistent with Redis
+    await Url.updateOne(
+      { shortid },
+      { $set: { expiresAt: new Date(Date.now() + 24 * 60 * 60 * 1000) } }
+    );
 
     await Url.updateOne({ shortid }, { $inc: { clicks: 1 } });
   }

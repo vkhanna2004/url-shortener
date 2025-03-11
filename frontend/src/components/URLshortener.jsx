@@ -28,10 +28,10 @@ const URLShortener = () => {
 
     try {
       const response = await api.post("/shorten", { longurl });
-      setShortURL(`${API_BASE_URL}/${response.data.shortid}`);
+      setShortURL(`${API_BASE_URL}/api/${response.data.data.shortid}`);
     } catch (err) {
       setError(
-        err.response?.data?.message ||
+        err.response?.data?.data?.message ||
           "Failed to shorten URL. Please try again."
       );
     }
@@ -96,7 +96,10 @@ const URLShortener = () => {
             </a>
           </p>
           <button
-            onClick={() => setShortURL("")}
+            onClick={() => {
+              setShortURL("");
+              setLongurl("");
+            }}
             className="mt-2 w-full bg-gray-600 hover:bg-gray-700 text-white py-2 rounded-lg transition"
           >
             Shorten Another URL
