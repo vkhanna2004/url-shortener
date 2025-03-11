@@ -1,11 +1,18 @@
-import URLShortener from "./components/URLShortener";
+import { useEffect, useState } from "react";
+import URLShortener from "./components/URLshortener";
 
-const App = () => {
+function App() {
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "dark");
+
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", theme === "dark");
+  }, [theme]);
+
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-900 ">
-      <URLShortener />
+    <div>
+      <URLShortener theme={theme} setTheme={setTheme} />
     </div>
   );
-};
+}
 
 export default App;
