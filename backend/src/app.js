@@ -12,7 +12,7 @@ app.use(
   })
 );
 
-app.use("/api", urlRouter);
+app.use("/", urlRouter);
 
 export default app;
 

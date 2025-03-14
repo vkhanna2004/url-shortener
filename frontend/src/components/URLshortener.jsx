@@ -6,7 +6,7 @@ const API_BASE_URL =
   import.meta.env.VITE_API_BASE_URL;
 
 const api = axios.create({
-  baseURL: API_BASE_URL + "/api",
+  baseURL: API_BASE_URL ,
   headers: {
     "Content-Type": "application/json",
   },
@@ -60,7 +60,7 @@ const URLShortener = () => {
 
     try {
       const response = await api.post("/shorten", { longurl });
-      setShortURL(`${API_BASE_URL}/api/${response.data.data.shortid}`);
+      setShortURL(`${API_BASE_URL}/${response.data.data.shortid}`);
     } catch (err) {
       setError(
         err.response?.data?.data?.message ||
